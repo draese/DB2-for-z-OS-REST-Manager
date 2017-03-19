@@ -11,6 +11,9 @@ client packages.
 
 This program was developed, using XCode 8.2.1 on MacOS Sierra. All source is written in Swift 3.
 
+A detailed description about the installation process and how it can be started, can be found on
+the project's Wiki page: https://github.com/draese/DB2-for-zOS-REST-Manager/wiki
+
 Just open the project with XCode and build the product either for Debug or Release settings.
 By default, the application stores configuration settings but it doesn't persist the user's password.
 In order to also persist the password, you have to specify a *STOREPASSWD* in the active compilation
