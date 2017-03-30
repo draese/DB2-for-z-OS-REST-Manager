@@ -278,7 +278,7 @@ extension RegisterServiceViewController: RESTClientConsumer {
     ///   - code: Error code, describing the issue
     ///   - message: Server side error message
     func handleError( requestType: RequestType, code: ClientError, message: String? ) {
-        NSLog( "ERROR registering the new serive: code=\(code), msg=\(message)" )
+        NSLog( "ERROR registering the new serive: code=\(code), msg=\(message ?? "unknown reason")" )
         
         // move the display of an error dialog back into the main thread
         OperationQueue.main.addOperation {

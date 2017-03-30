@@ -526,7 +526,7 @@ extension ViewController: RESTClientConsumer {
     ///   - code: The error code
     ///   - message: A localized error message to display as message details
     func handleError( requestType: RequestType, code: ClientError, message: String? ) {
-        NSLog( "Error in client communication (\(code)): \(message)" );
+        NSLog( "Error in client communication (\(code)): \(message ?? "unknown reason")" );
         
         // move the handling back into the main/UI thread
         OperationQueue.main.addOperation {
