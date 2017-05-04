@@ -48,13 +48,15 @@ class HostNameFormatter: InputValidationFormatter {
             ret = false
         }
         
-        for label in labels {
+        for labelIndex in 0..<labels.count {
+            let label = labels[labelIndex]
+            
             if !label.isEmpty {
                 // single label cannot exceed 63 characters
                 if label.characters.count > 63 {
                     ret = false
                 }
-
+                
                 // should only contain letters, digits and -,_
                 if ret {
                     for c in label.unicodeScalars {
@@ -65,10 +67,22 @@ class HostNameFormatter: InputValidationFormatter {
                     }
                 }
                 
-                // if number only, don't exceed valid IP range 1..255
+                // if number only, don't exceed valid IP range 0/1..255
                 if ret {
-                    if let n = Int( label ) {
-                        if n < 1 || n > 255 {
+                    if label.hasPrefix( "0" ) && label.characters.count > 1 {
+                        ret = false;
+                    }
+                    else if let n = Int( label ) {
+                        // only 1st and 4th element needs to be non-null
+                        if labelIndex == 1 || labelIndex == 2 {
+                            if n > 255 {
+                                ret = false
+                            }
+                            else if n == 0 && label.characters.count > 1 {
+                                ret = false
+                            }
+                        }
+                        else if n < 1 || n > 255 {
                             ret = false
                         }
                     }
